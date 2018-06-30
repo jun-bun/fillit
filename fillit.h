@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fillit.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dkotov <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: juwong <juwong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/29 18:16:49 by dkotov            #+#    #+#             */
-/*   Updated: 2018/06/29 18:18:29 by dkotov           ###   ########.fr       */
+/*   Updated: 2018/06/29 21:35:08 by juwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 
 # define FILLIT_H
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <string.h>
+#include "libft/libft.h"
 
 int	ft_putchar(char c);
 void	ft_putnbr(int n);
