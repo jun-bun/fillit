@@ -23,7 +23,7 @@ OBJECTS = *.o
 all: $(NAME)
 
 $(NAME):
-	gcc -Wall -Wextra -Werror -c $(LIB).h $(SOURCES)
+	gcc -Wall -Wextra -Werror -c $(LIB).h $(HEADER) $(SOURCES)
 	ar rcs $(LIB).a $(OBJECTS)
 	gcc -Wall -Wextra -Werror -o $(NAME) $(LIB).a fillit.c
 
@@ -32,7 +32,7 @@ clean:
 
 fclean: clean
 	rm -f $(NAME)
-	rm -f $(LIB).a $(LIB).h.gch
+	rm -f $(LIB).a $(LIB).h.gch $(HEADER).gch
 
 re: fclean all
 

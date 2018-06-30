@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.c                                           :+:      :+:    :+:   */
+/*   valid.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dkotov <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/29 19:00:21 by dkotov            #+#    #+#             */
-/*   Updated: 2018/06/29 21:36:21 by juwong           ###   ########.fr       */
+/*   Created: 2018/06/30 12:38:48 by dkotov            #+#    #+#             */
+/*   Updated: 2018/06/30 12:38:56 by dkotov           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
-
-int	main(int argc, char **argv)
+int	valid_tetrominoe(char *s)
 {
-	if (argc == 2)
+	int	i;
+	int	t;
+
+	i = 0;
+	t = 0;
+	while(s)
 	{
-		ft_putnbr(valid_tetrominoe(argv[1]));
+		if (s[i]) == '#')
+			t++;
+		i++;
 	}
+	if (t == 4)
+		return (1);
 	else
-	{
-		ft_putstr("usage: ./fillit file_with_tetrominoes");
-	}
-	return (0);
+		return (0);
 }
