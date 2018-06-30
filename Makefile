@@ -12,7 +12,7 @@
 
 NAME = fillit
 
-LIB = libft
+LIB = libft/libft
 
 HEADER = fillit.h
 
@@ -23,15 +23,16 @@ OBJECTS = *.o
 all: $(NAME)
 
 $(NAME):
-	gcc -Wall -Wextra -Werror -c libft/$(LIB).h $(SOURCES)
-	ar rcs libft/$(LIB).a $(OBJECTS)
-	gcc -Wall -Wextra -Werror -o $(NAME) libft/$(LIB).a fillit.c
+	gcc -Wall -Wextra -Werror -c $(LIB).h $(SOURCES)
+	ar rcs $(LIB).a $(OBJECTS)
+	gcc -Wall -Wextra -Werror -o $(NAME) $(LIB).a fillit.c
 
 clean:
 	rm -f *.o
 
 fclean: clean
 	rm -f $(NAME)
+	rm -f $(LIB).a $(LIB).h.gch
 
 re: fclean all
 
