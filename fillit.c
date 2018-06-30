@@ -14,6 +14,10 @@
 
 int	main(int argc, char **argv)
 {
+	/* int fd = open(argv[1], O_RDONLY);
+	char buff[547];
+
+	int n = read(fd, buff, 547); */
 	if (argc == 2)
 	{
 		ft_putnbr(valid_tetrominoe(argv[1]));

@@ -17,9 +17,9 @@ int	valid_tetrominoe(char *s)
 
 	i = 0;
 	t = 0;
-	while(s)
+	while(s[i])
 	{
-		if (s[i]) == '#')
+		if (s[i] == '#')
 			t++;
 		i++;
 	}

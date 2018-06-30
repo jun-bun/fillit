@@ -13,7 +13,7 @@
 #include "libft/libft.h"
 #include "fillit.h"
 
-char	**make_board(size_t size);
+char	**make_board(size_t size)
 {
 	char	**board;
 	size_t	i;
