@@ -10,7 +10,9 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fillit.a
+NAME = fillit
+
+LIB = libft.a
 
 HEADER = fillit.h
 
@@ -21,16 +23,13 @@ ROOT = *.o
 all: $(NAME)
 
 $(NAME):
-	gcc -Wall -Wextra -Werror -c $(HEADER) $(SOURCE)
-	ar rcs $(NAME) $(ROOT)
-	gcc -Wall -Wextra -Werror -o fillit fillit.c
+	gcc -Wall -Wextra -Werror -o $(NAME) $(LIB) $(SOURCE)
 
 clean:
 	rm -f *.o
 
 fclean: clean
-	rm -f $(NAME) $(HEADER).gch a.out
-	rm fillit
+	rm -f $(NAME)
 
 re: fclean all
 

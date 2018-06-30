@@ -12,8 +12,15 @@
 
 #include "fillit.h"
 
-int	main()
+int	main(int argc, char **argv)
 {
-		printf("hallo");
-			return (0);
+	if (argc == 2)
+	{
+		ft_putstr(argv[1]);
+	}
+	else
+	{
+		ft_putstr("usage: ");
+	}
+	return (0);
 }
