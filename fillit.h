@@ -14,7 +14,8 @@
 
 # define FILLIT_H
 
-#include <stdio.h>
+#include <stdio.h> /* to delete after testing */
+#include <stdlib.h>
 
 
 #endif
