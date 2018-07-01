@@ -27,7 +27,7 @@ int	main(int argc, char **argv)
 		if (fd == 3)
 		{
 			ret = read(fd, buf, BUF_SIZE);
-			if (valid_tetrominoe_file(buf) != 1)
+			if (valid_tetro_chars(buf) != 1)
 			{
 				ft_putstr("invalid input\n");
 				ft_putstr(buf);

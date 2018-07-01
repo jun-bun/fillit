@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int	valid_tetrominoe_file(char *s)
+int	valid_tetro_chars(char *s)
 {
 	int	i;
 	int	t;
@@ -19,6 +19,8 @@ int	valid_tetrominoe_file(char *s)
 	t = 0;
 	while(s[i])
 	{
+		if (s[i] != '#' && s[i] != '.' && s[i] != '\n')
+			return (0);
 		if (s[i] == '#')
 			t++;
 		i++;
@@ -28,3 +30,5 @@ int	valid_tetrominoe_file(char *s)
 	else
 		return (0);
 }
+
+int valid_
