@@ -40,7 +40,7 @@ int	valid_tetro_chars(char *s, int start, int end)
 }
 
 /*
-** doesn't account for ending with an empty line
+** valid_tetro_map doesn't account for ending with an empty line
 */
 
 int	valid_tetro_map(char *s)
