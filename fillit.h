@@ -26,6 +26,6 @@ typedef struct	s_piece
 
 int		*piece_cords(int piece);
 char	**piece_create(int	piece);
-int		valid_tetrominoe(char *s);
+int		valid_tetrominoe_file(char *s);
 
 #endif

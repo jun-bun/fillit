@@ -11,16 +11,35 @@
 /* ************************************************************************** */
 
 #include "fillit.h"
+#include <fcntl.h>
+
+#define BUF_SIZE 547
 
 int	main(int argc, char **argv)
 {
-	/* int fd = open(argv[1], O_RDONLY);
-	char buff[547];
+	int fd;
+	int ret;
+	char buf[BUF_SIZE];
 
-	int n = read(fd, buff, 547); */
 	if (argc == 2)
 	{
-		ft_putnbr(valid_tetrominoe(argv[1]));
+		fd = open(argv[1], O_RDONLY);
+		if (fd == 3)
+		{
+			ret = read(fd, buf, BUF_SIZE);
+			if (valid_tetrominoe_file(buf) != 1)
+			{
+				ft_putstr("invalid input\n");
+				ft_putstr(buf);
+				return (1);
+			}
+		}
+		else
+		{
+			ft_putstr("cannot read the file");
+			return (2);
+		}
+		close(fd);
 	}
 	else
 	{

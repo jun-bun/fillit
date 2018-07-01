@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int	valid_tetrominoe(char *s)
+int	valid_tetrominoe_file(char *s)
 {
 	int	i;
 	int	t;
@@ -23,7 +23,7 @@ int	valid_tetrominoe(char *s)
 			t++;
 		i++;
 	}
-	if (t == 4)
+	if (t == 4 && i == 20)
 		return (1);
 	else
 		return (0);
