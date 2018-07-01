@@ -31,6 +31,9 @@ int	main(int argc, char **argv)
 			{
 				ft_putstr("I found: ");
 				ft_putnbr(valid_tetro_map(buf));
+				ft_putchar('\n');
+				/* ft_putstr("Connections: ");
+				ft_putnbr(valid_tetro_connections(buf, 0, 20)); */
 				return (0);
 			}
 			else

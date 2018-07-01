@@ -39,6 +39,45 @@ int	valid_tetro_chars(char *s, int start, int end)
 		return (0);
 }
 
+/* connections are halfway done
+**
+int	valid_tetro_connections(char *s, int start, int end)
+{
+	int	i;
+	int	c;
+
+	i = start;
+	c = 0;
+	while(i < end)
+	{
+		if (s[i] == '#' && i == start)
+		{
+			if (s[i + 1] == '#')
+				c++;
+			if (s[i + 5] == '#')
+				c++;
+		}
+		if (s[i] == '#' && i > start && i < start + 3)
+		{
+			if (s[i - 1] == '#')
+				c++;
+			if (s[i + 1] == '#')
+				c++;
+			if (s[i + 5] == '#')
+				c++;
+		}
+		if (s[i] == '#' && i == start + 3)
+		{
+			if (s[i - 1] == '#')
+				c++;
+			if (s[i + 5] == '#')
+				c++;
+		}
+		i++;
+	}
+	return (c);
+}*/
+
 /*
 ** valid_tetro_map doesn't account for ending with an empty line
 */
