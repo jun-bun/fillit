@@ -13,13 +13,13 @@
 #include "fillit.h"
 #include <fcntl.h>
 
-#define BUF_SIZE 547
+#define BUF_SIZE 560
 
 int	main(int argc, char **argv)
 {
-	int fd;
-	int ret;
-	char buf[BUF_SIZE];
+	int	fd;
+	int	ret;
+	char	buf[BUF_SIZE];
 
 	if (argc == 2)
 	{

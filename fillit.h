@@ -14,7 +14,7 @@
 
 # define FILLIT_H
 
-#include "libft/libft.h"
+# include "libft/libft.h"
 
 typedef struct	s_piece
 {
@@ -22,11 +22,11 @@ typedef struct	s_piece
 	char				symbol;
 	char				**piece_object;
 	struct s_piece		*next;
-}						t_piece;
+}				t_piece;
 
-int		*piece_cords(int piece);
+int	*piece_cords(int piece);
 char	**piece_create(int	piece);
-int		valid_tetro_chars(char *s, int start, int end);
-int		valid_tetro_map(char *s);
+int	valid_tetro_chars(char *s, int start, int end);
+int	valid_tetro_map(char *s);
 
 #endif

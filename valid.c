@@ -39,7 +39,9 @@ int	valid_tetro_chars(char *s, int start, int end)
 		return (0);
 }
 
-int	valid_tetro_map (char *s)
+/* doesn't account for ending with an empty line */
+
+int	valid_tetro_map(char *s)
 {
 	int	i;
 	int	tetro;
