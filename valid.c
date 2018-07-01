@@ -14,10 +14,18 @@ int	valid_tetro_chars(char *s)
 {
 	int	i;
 	int	t;
+	int endline;
 
 	i = 0;
 	t = 0;
-	while(s[i])
+	endline = 4;
+	while (s[endline])
+	{
+		if (s[endline] != '\n')
+			return (0);
+		endline = endline + 5;
+	}
+	while (s[i])
 	{
 		if (s[i] != '#' && s[i] != '.' && s[i] != '\n')
 			return (0);
