@@ -10,22 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int	valid_tetro_chars(char *s)
+int	valid_tetro_chars(char *s, int start, int end)
 {
 	int	i;
 	int	t;
 	int endline;
 
-	i = 0;
+	i = start;
 	t = 0;
-	endline = 4;
-	while (s[endline])
+	endline = i + 4;
+	while (endline < end)
 	{
 		if (s[endline] != '\n')
 			return (0);
 		endline = endline + 5;
 	}
-	while (s[i])
+	while (i < end)
 	{
 		if (s[i] != '#' && s[i] != '.' && s[i] != '\n')
 			return (0);
@@ -33,8 +33,30 @@ int	valid_tetro_chars(char *s)
 			t++;
 		i++;
 	}
-	if (t == 4 && i == 20)
+	if (t == 4)
 		return (1);
 	else
 		return (0);
+}
+
+int	valid_tetro_map (char *s)
+{
+	int	i;
+	int	tetro;
+
+	i = 0;
+	tetro = 0;
+	while (s[i])
+	{
+		if (valid_tetro_chars(s, i, i + 19) == 1)
+		{
+			i = i + 21;
+			if (s[i] == '\n')
+				i++;
+			tetro++;
+		}
+		else
+			return (0);
+	}
+	return (tetro);
 }

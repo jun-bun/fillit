@@ -27,7 +27,13 @@ int	main(int argc, char **argv)
 		if (fd == 3)
 		{
 			ret = read(fd, buf, BUF_SIZE);
-			if (valid_tetro_chars(buf) != 1)
+			if (valid_tetro_map(buf) > 0 && valid_tetro_map(buf) <= 26)
+			{
+				ft_putstr("I found: ");
+				ft_putnbr(valid_tetro_map(buf));
+				return (0);
+			}
+			else
 			{
 				ft_putstr("invalid input\n");
 				ft_putstr(buf);

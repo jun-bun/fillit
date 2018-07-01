@@ -26,6 +26,7 @@ typedef struct	s_piece
 
 int		*piece_cords(int piece);
 char	**piece_create(int	piece);
-int		valid_tetro_chars(char *s);
+int		valid_tetro_chars(char *s, int start, int end);
+int		valid_tetro_map(char *s);
 
 #endif
