@@ -30,5 +30,3 @@ int	valid_tetro_chars(char *s)
 	else
 		return (0);
 }
-
-int valid_
