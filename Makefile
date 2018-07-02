@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dkotov <marvin@42.fr>                      +#+  +:+       +#+         #
+#    By: juwong <juwong@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/29 18:07:57 by dkotov            #+#    #+#              #
-#    Updated: 2018/06/30 14:05:21 by dkotov           ###   ########.fr        #
+#    Updated: 2018/07/01 16:28:44 by juwong           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,3 +40,8 @@ re: fclean all
 
 main:
 	gcc -Wall -Wextra -Werror main.c
+
+juntest:
+	gcc -Wall -Wextra -Werror -c $(LIB).h $(LIB_SRC) $(NAME).h juntest.c valid.c board.c -g
+	ar rcs $(NAME).a $(OBJECTS)
+	gcc -Wall -Wextra -Werror -o juntest $(NAME).a -g
