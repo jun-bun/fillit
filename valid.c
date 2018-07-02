@@ -39,44 +39,38 @@ int	valid_tetro_chars(char *s, int start, int end)
 		return (0);
 }
 
-/* connections are halfway done
-**
-int	valid_tetro_connections(char *s, int start, int end)
+int	valid_tetro_connections(char *s, int start, int end, int pos)
+{
+	int	i;
+	int	c;
+
+	i = pos;
+	c = 0;
+	if (s[i] == '#' && i != start && s[i - 1] == '#')
+		c++;
+	if (s[i] == '#' && i != end && s[i + 1] == '#')
+		c++;
+	if (s[i] == '#' && i > (start + 4) && s[i - 5] == '#')
+	 	c++;
+	if (s[i] == '#' && i < (end - 5) && s[i + 5] == '#')
+		c++;
+	return (c);
+}
+
+int valid_tetro_connections_checker(char *s, int start, int end)
 {
 	int	i;
 	int	c;
 
 	i = start;
 	c = 0;
-	while(i < end)
+	while (i < end)
 	{
-		if (s[i] == '#' && i == start)
-		{
-			if (s[i + 1] == '#')
-				c++;
-			if (s[i + 5] == '#')
-				c++;
-		}
-		if (s[i] == '#' && i > start && i < start + 3)
-		{
-			if (s[i - 1] == '#')
-				c++;
-			if (s[i + 1] == '#')
-				c++;
-			if (s[i + 5] == '#')
-				c++;
-		}
-		if (s[i] == '#' && i == start + 3)
-		{
-			if (s[i - 1] == '#')
-				c++;
-			if (s[i + 5] == '#')
-				c++;
-		}
+		c += valid_tetro_connections(s, start, end, i);
 		i++;
 	}
-	return (c);
-}*/
+	return(c);
+}
 
 /*
 ** valid_tetro_map doesn't account for ending with an empty line
@@ -91,7 +85,7 @@ int	valid_tetro_map(char *s)
 	tetro = 0;
 	while (s[i])
 	{
-		if (valid_tetro_chars(s, i, i + 19) == 1)
+		if (valid_tetro_chars(s, i, i + 19) == 1 && (valid_tetro_connections_checker (s, i, i + 19) == 6 || valid_tetro_connections_checker (s, i, i + 19) == 8))
 		{
 			i = i + 21;
 			if (s[i] == '\n')
