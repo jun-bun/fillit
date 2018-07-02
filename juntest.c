@@ -12,7 +12,7 @@ void	ft_print_board(char **board)
 
 void	test_get_boundry()
 {
-	short	*boundry;
+	int		*boundry;
 
 	t_list		*pieces;
 	pieces = ft_lstnew("##\n##",  6);
@@ -21,7 +21,7 @@ void	test_get_boundry()
 	boundry = get_boundry_piece(pieces->content);
 	while (*boundry)
 	{
-		printf("%hd ", *boundry);
+		printf("%d ", *boundry);
 		boundry++;
 	}
 	pieces = pieces->next;
@@ -29,7 +29,7 @@ void	test_get_boundry()
 	boundry = get_boundry_piece(pieces->content);
 	while (*boundry)
 	{
-		printf("%hd ", *boundry);
+		printf("%d ", *boundry);
 		boundry++;
 	}
 }
@@ -39,16 +39,24 @@ int		main()
 	t_list		*pieces;
 	char		**board;
 
-	pieces = ft_lstnew("##\n##\n",  6);
-	pieces->next = ft_lstnew("#\n#\n#\n#\n", 8);
+	pieces = ft_lstnew("##\n##",  6);
+	pieces->next = ft_lstnew("#\n#\n#\n#", 8);
+	/*
 	write(1, pieces->content, pieces->content_size);
 	pieces = pieces->next;
 	write(1, pieces->content, pieces->content_size);
 	ft_putchar('\n');
+	*/
 	board = make_board(4);
 	ft_print_board(board);
+	ft_putchar('\n');
 	put_piece(pieces, &board);
 	ft_print_board(board);
-	test_get_boundry();
+	ft_putchar('\n');
+	pieces = pieces->next;
+	put_piece(pieces, &board);
+	ft_putchar('\n');
+	ft_print_board(board);
+	//test_get_boundry();
 	return (0);
 }
