@@ -40,5 +40,6 @@ int valid_tetro_connections_checker(char *s, int start, int end);
 char	tetro_symbol(int tetro_num);
 int	*tetro_next_coordinate(char *s, int start, int skip);
 int	**tetro_get_coordinates(char *s, int start, int end);
+int	**tetro_clean_coordinates(int **arr);
 
 #endif

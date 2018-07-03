@@ -88,12 +88,23 @@ int	**tetro_get_coordinates(char *s, int start, int end)
 	return(arr);
 }
 
-/* int	**tetro_clean_coordinates(int **arr)
+int	**tetro_clean_coordinates(int **arr)
 {
-	int	i;
-
-	i = 0;
-	while (i > 0)
-		if (arr[0][0])
+	if (arr[0][0] != 0 && arr[1][0] != 0 && arr[2][0] != 0 && arr[3][0] != 0)
+		while (arr[0][0] != 0 && arr[1][0] != 0 && arr[2][0] != 0 && arr[3][0] != 0)
+		{
+			arr[0][0] -= 1;
+			arr[1][0] -= 1;
+			arr[2][0] -= 1;
+			arr[3][0] -= 1;
+		}
+	if (arr[0][1] != 0 && arr[1][1] != 0 && arr[2][1] != 0 && arr[3][1] != 0)
+		while (arr[0][1] != 0 && arr[1][1] != 0 && arr[2][1] != 0 && arr[3][1] != 0)
+		{
+			arr[0][1] -= 1;
+			arr[1][1] -= 1;
+			arr[2][1] -= 1;
+			arr[3][1] -= 1;
+		}
+	return (arr);
 }
-*/
