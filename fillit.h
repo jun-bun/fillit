@@ -6,7 +6,7 @@
 /*   By: juwong <juwong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/29 18:16:49 by dkotov            #+#    #+#             */
-/*   Updated: 2018/07/02 16:15:14 by juwong           ###   ########.fr       */
+/*   Updated: 2018/07/03 00:00:41 by juwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ typedef struct	s_piece
 }				t_piece;
 
 void	ft_print_board(char **board);
-void	solve(t_list *pieces);
-int		*piece_cords(int piece);
-char	**piece_create(int	piece);
+void	start_solve(t_list *pieces);
+void	solve(t_list *piece, char ***board, size_t size, int pos_x, int pos_y);
 char	**make_board(size_t size);
 size_t	get_min_board_size(t_list *pieces);
 int		*get_boundry_piece(char *piece);
 int		check_valid_space(t_list *piece, char ***board, int x, int y);
-int		put_piece(t_list *piece, char ***board);
+int		put_piece(t_list *piece, char ***board, int pos_x, int pos_y);
+void	remove_piece(char ***board);
 int	valid_tetro_chars(char *s, int start, int end);
 int	valid_tetro_map(char *s);
 int	valid_tetro_connections(char *s, int start, int end, int pos);

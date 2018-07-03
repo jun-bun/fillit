@@ -6,7 +6,7 @@
 /*   By: juwong <juwong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/29 19:25:08 by juwong            #+#    #+#             */
-/*   Updated: 2018/07/02 00:10:12 by juwong           ###   ########.fr       */
+/*   Updated: 2018/07/03 00:00:43 by juwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	**make_board(size_t size)
 	size_t	i;
 
 	i = 0;
-	board = (char**)malloc(sizeof(char**) * size + 1);
+	board = (char**)malloc(sizeof(*board) * (size + 1));
 	ptr = board;
 	while (i < size)
 	{
@@ -30,6 +30,25 @@ char	**make_board(size_t size)
 	}
 	*board = 0;
 	return (ptr);
+}
+
+size_t	get_min_board_size(t_list *pieces)
+{
+	int		i;
+	int		sqroot;
+	
+	i = 0;
+	sqroot = 2;
+	while (pieces)
+    {
+        pieces = pieces->next;
+		i++;
+    }
+	i = i * 4;
+	while (sqroot * sqroot < i)
+		sqroot++;
+	
+	return ((size_t) sqroot);
 }
 
 int		*get_boundry_piece(char *piece)
@@ -60,7 +79,44 @@ int		*get_boundry_piece(char *piece)
 	return (boundry);
 }
 
-//short	*piece_postion(t_list	*piece,		***board)
+
+ void	remove_piece(char ***board)
+ {
+	char	**ptr_board;
+	char	**ptr2_board;
+	char	last_piece;
+	int		i;
+
+	ptr_board = *board;
+	ptr2_board = *board;
+	last_piece = 'A';
+	while (*ptr_board)
+	{
+		i = 0;
+		while ((*ptr_board)[i])
+		{
+			if (ft_isalpha(**ptr_board))
+			{
+				if (last_piece < (*ptr_board)[i])
+					last_piece = (*ptr_board)[i];
+			}
+			i++;
+		}
+		ptr_board++;
+	}
+	while (*ptr2_board)
+	{
+		i = 0;
+		while ((*ptr2_board)[i])
+		{
+			if ((*ptr2_board)[i] == last_piece)
+				(*ptr2_board)[i] = '.';
+			i++;
+		}
+		ptr2_board++;
+	}
+	return ;
+ }
 
 int		check_valid_space(t_list *piece, char ***board, int x, int y)
 {
@@ -84,9 +140,9 @@ int		check_valid_space(t_list *piece, char ***board, int x, int y)
 */
 	while (*ptr)
 	{
-		if (*ptr == '#')
+		if (ft_isalpha(*ptr))
 		{
-			if (board2[i + x][j + y] == '.')
+			if (board2[j + y][i + x] == '.')
 				i++;
 			else
 				return (0);
@@ -111,7 +167,7 @@ int		check_valid_space(t_list *piece, char ***board, int x, int y)
 	return (1);
 }
 
-int		put_piece(t_list *piece, char	***board)
+int		put_piece(t_list *piece, char	***board, int pos_x, int pos_y)
 {
 	char	**board2;
 	int		*boundry;
@@ -125,8 +181,8 @@ int		put_piece(t_list *piece, char	***board)
 		return (0);
 //	ft_putendl(piece->content);
 	boundry = get_boundry_piece(piece->content);
-	i = 0;
-	j = 0;
+	i = 0 + pos_x;
+	j = 0 + pos_y;
 	while (i + boundry[0] <= 4 && j + boundry[1] <= 4)
 	{
 
@@ -141,7 +197,7 @@ int		put_piece(t_list *piece, char	***board)
 			while (*(char*)piece->content)
 			{
 //				ft_putstr("enter piece placement \n");
-				if (*(char*)piece->content == '#')
+				if (ft_isalpha(*(char*)piece->content))
 				{
 					board2[j][k] = *(char*)piece->content;
 					k++;
@@ -160,7 +216,7 @@ int		put_piece(t_list *piece, char	***board)
 		}
 		i++;
 //		ft_putnbr(i);
-		if (i + boundry[0] >= 4)
+		if (i + boundry[0] > 4)
 		{
 //			ft_putendl("Enter");
 			j++;

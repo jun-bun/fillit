@@ -4,6 +4,8 @@
 
 void	ft_print_board(char **board)
 {
+	if(!board)
+		printf("Fuck this shit");
 	while (*board)
 	{	ft_putstr(*board++);
 		ft_putchar('\n');
@@ -37,26 +39,20 @@ void	test_get_boundry()
 int		main()
 {
 	t_list		*pieces;
-	char		**board;
 
-	pieces = ft_lstnew("##\n##",  6);
-	pieces->next = ft_lstnew("#\n#\n#\n#", 8);
 	/*
-	write(1, pieces->content, pieces->content_size);
-	pieces = pieces->next;
-	write(1, pieces->content, pieces->content_size);
-	ft_putchar('\n');
-	*/
-	board = make_board(4);
-	ft_print_board(board);
-	ft_putchar('\n');
-	put_piece(pieces, &board);
-	ft_print_board(board);
-	ft_putchar('\n');
-	pieces = pieces->next;
-	put_piece(pieces, &board);
-	ft_putchar('\n');
-	ft_print_board(board);
+	pieces = ft_lstnew("##\n##",  6);
+	pieces->next = ft_lstnew(".##\n##", 6);
+	pieces->next->next = ft_lstnew("#\n#\n#\n#", 8);
+	pieces->next->next->next = ft_lstnew("####", 4);
+	*/ 
+	pieces = ft_lstnew(".AA\nAA",  6);
+	pieces->next = ft_lstnew("BB\nBB", 6);
+	pieces->next->next = ft_lstnew("C\nC\nC\nC", 8);
+	pieces->next->next->next = ft_lstnew("DDDD", 4);
+	
+	start_solve(pieces);
+	
 	//test_get_boundry();
 	return (0);
 }
