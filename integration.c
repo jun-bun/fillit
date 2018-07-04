@@ -115,28 +115,38 @@ char	*tetro_new_string(int **arr)
 	int	i;
 	int	p;
 	int	y;
+	int	x;
 
 	i = 0;
 	p = 0;
 	y = 0;
+	x = 0;
 	s = (char *)malloc(sizeof(char)*25);
 	while(p < 4)
-	{
-		if (y == arr[p][1])
-		{
-			if (i == arr[p][0])
-				s[i] = '#';
-			else
-				s[i] = '.';
-			i++;
-			y++;
-		}
-		else
-		{
-			s[i] = '\n';
-			i++;
-		}
-		p++;
-	}
+    {
+        if (y == arr[p][1])
+        {
+            if (x == arr[p][0])
+            {
+              s[i] = '#';
+              x++;
+              p++;
+            }
+            else
+            {
+              s[i] = '.';
+              x++;
+            }
+            i++;
+        }
+        else
+        {
+          s[i] = '\n';
+          i++;
+          x = 0;
+          y++;
+        }
+    }
+    s[i] = '\0';
 	return (s);
 }
