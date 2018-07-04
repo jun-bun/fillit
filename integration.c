@@ -42,7 +42,7 @@ char	tetro_symbol(int tetro_num)
 	return (sym);
 }
 
-int	*tetro_next_coordinate(char *s, int start)
+int	*tetro_next_coordinate(char *s, int start, int skip)
 {
 	int	x;
 	int	y;
@@ -52,16 +52,16 @@ int	*tetro_next_coordinate(char *s, int start)
 	arr = (int *)malloc(sizeof(int) * 3);
 	i = start;
 	x = 0;
-	y = 0;
-	while (s[i] != '#')
-	{
-		if (s[i] == '.')
+	y = 1;
+	while (s[i] && skip >= 0)
+		{
+			if (s[i] == '\n')
+				y++;
+			if (s[i] == '#')
+				skip--;
 			i++;
-		if (s[i] == '\n')
-			y++;
-		i++;
-	}
-	(i > 5) ? (x = i % 10 - 5) : (x = i % 10);
+		}
+	((i > 5 && i < 10) || (i > 15 && i < 20)) ? (x = i % 10 - 5) : (x = i % 10);
 	arr[0] = x;
 	arr[1] = y;
 	arr[2] = i;
@@ -80,19 +80,73 @@ int	**tetro_get_coordinates(char *s, int start, int end)
 	while (p < 4 && start < end)
 	{
 		arr[p] = (int *)malloc(sizeof(int) * 3);
-		arr[p][0] = tetro_next_coordinate(s, i)[0];
-		arr[p][1] = tetro_next_coordinate(s, i)[1];
-		i = tetro_next_coordinate(s, i)[2] + 1;
+		arr[p][0] = tetro_next_coordinate(s, start, p)[0];
+		arr[p][1] = tetro_next_coordinate(s, start, p)[1];
+		arr[p][2] = tetro_next_coordinate(s, start, p)[2];
 		p++;
 	}
 	return(arr);
 }
 
-/* char tetro_clean_map(int **tetro)
+int	**tetro_clean_coordinates(int **arr)
 {
+	if (arr[0][0] != 0 && arr[1][0] != 0 && arr[2][0] != 0 && arr[3][0] != 0)
+		while (arr[0][0] != 0 && arr[1][0] != 0 && arr[2][0] != 0 && arr[3][0] != 0)
+		{
+			arr[0][0] -= 1;
+			arr[1][0] -= 1;
+			arr[2][0] -= 1;
+			arr[3][0] -= 1;
+		}
+	if (arr[0][1] != 0 && arr[1][1] != 0 && arr[2][1] != 0 && arr[3][1] != 0)
+		while (arr[0][1] != 0 && arr[1][1] != 0 && arr[2][1] != 0 && arr[3][1] != 0)
+		{
+			arr[0][1] -= 1;
+			arr[1][1] -= 1;
+			arr[2][1] -= 1;
+			arr[3][1] -= 1;
+		}
+	return (arr);
+}
+
+char	*tetro_new_string(int **arr)
+{
+	char	*s;
 	int	i;
+	int	p;
+	int	y;
+	int	x;
 
 	i = 0;
-
+	p = 0;
+	y = 0;
+	x = 0;
+	s = (char *)malloc(sizeof(char)*25);
+	while(p < 4)
+    {
+        if (y == arr[p][1])
+        {
+            if (x == arr[p][0])
+            {
+              s[i] = '#';
+              x++;
+              p++;
+            }
+            else
+            {
+              s[i] = '.';
+              x++;
+            }
+            i++;
+        }
+        else
+        {
+          s[i] = '\n';
+          i++;
+          x = 0;
+          y++;
+        }
+    }
+    s[i] = '\0';
+	return (s);
 }
-*/
