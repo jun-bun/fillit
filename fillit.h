@@ -6,7 +6,7 @@
 /*   By: juwong <juwong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/29 18:16:49 by dkotov            #+#    #+#             */
-/*   Updated: 2018/07/03 00:00:41 by juwong           ###   ########.fr       */
+/*   Updated: 2018/07/03 21:11:43 by juwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,22 @@ typedef struct	s_piece
 	struct s_piece		*next;
 }				t_piece;
 
+typedef struct	s_point
+{
+	int					x;
+	int					y;
+}				t_point;
+
 void	ft_print_board(char **board);
 void	start_solve(t_list *pieces);
-void	solve(t_list *piece, char ***board, size_t size, int pos_x, int pos_y);
-char	**make_board(size_t size);
-size_t	get_min_board_size(t_list *pieces);
+int		solve(t_list *l_pieces, char ***board, int size, t_point p);
+char	**make_board(int size);
+int		get_min_board_size(t_list *pieces);
 int		*get_boundry_piece(char *piece);
-int		check_valid_space(t_list *piece, char ***board, int x, int y);
-int		put_piece(t_list *piece, char ***board, int pos_x, int pos_y);
-void	remove_piece(char ***board);
+int		check_valid_space(char *piece, char ***board, int x, int y);
+int		piece_placeable(char *piece, char ***board, int size, t_point p);
+int		put_piece(char *piece, char ***board, int size, t_point p);
+char	*remove_piece(char ***board);
 int	valid_tetro_chars(char *s, int start, int end);
 int	valid_tetro_map(char *s);
 int	valid_tetro_connections(char *s, int start, int end, int pos);
