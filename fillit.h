@@ -6,7 +6,7 @@
 /*   By: juwong <juwong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/29 18:16:49 by dkotov            #+#    #+#             */
-/*   Updated: 2018/07/04 14:54:35 by juwong           ###   ########.fr       */
+/*   Updated: 2018/07/04 15:45:30 by juwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,12 @@
 # define FILLIT_H
 
 # include "libft/libft.h"
+
+typedef struct	s_point
+{
+	int					x;
+	int					y;
+}				t_point;
 
 typedef struct	s_piece
 {
@@ -25,12 +31,6 @@ typedef struct	s_piece
 	struct s_piece		*previous;
 	struct s_piece		*next;
 }				t_piece;
-
-typedef struct	s_point
-{
-	int					x;
-	int					y;
-}				t_point;
 
 void	ft_print_board(char **board);
 void	start_solve(t_list *pieces);
