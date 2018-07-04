@@ -6,7 +6,7 @@
 /*   By: juwong <juwong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/29 19:25:08 by juwong            #+#    #+#             */
-/*   Updated: 2018/07/03 21:11:44 by juwong           ###   ########.fr       */
+/*   Updated: 2018/07/03 23:17:02 by juwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ int		*get_boundry_piece(char *piece)
 		}
 		ptr2_board++;
 	}
+	/*
 	if (last_piece == 'A')
 		return (".AA\nAA");
 	if (last_piece == 'B')
@@ -124,6 +125,7 @@ int		*get_boundry_piece(char *piece)
 	if (last_piece == 'D')
 		return ("DDDD");
 	else 
+	*/
 		return ("NOOOOOOOOO");
  }
 
