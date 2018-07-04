@@ -6,7 +6,7 @@
 /*   By: juwong <juwong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/29 18:16:49 by dkotov            #+#    #+#             */
-/*   Updated: 2018/07/03 21:11:43 by juwong           ###   ########.fr       */
+/*   Updated: 2018/07/04 14:54:35 by juwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ typedef struct	s_piece
 	char				symbol;
 	char				*content;
 	int					*boundry;
+	t_point				p;
+	struct s_piece		*previous;
 	struct s_piece		*next;
 }				t_piece;
 
@@ -50,7 +52,7 @@ int	**tetro_get_coordinates(char *s, int start, int end);
 int	**tetro_clean_coordinates(int **arr);
 char	*tetro_new_string(int **arr);
 t_piece *struct_new_piece(char *s, int tetro_num);
-// t_piece *struct_add_piece(t_piece old_piece, char *s, int tetro_num);
+t_piece *struct_add_piece(t_piece old_piece, char *s, int tetro_num);
 void print_t_piece(t_piece *pieces);
 
 #endif
