@@ -6,17 +6,17 @@
 /*   By: juwong <juwong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/29 19:25:08 by juwong            #+#    #+#             */
-/*   Updated: 2018/07/03 00:00:43 by juwong           ###   ########.fr       */
+/*   Updated: 2018/07/03 23:17:02 by juwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-char	**make_board(size_t size)
+char	**make_board(int size)
 {
 	char	**board;
 	char	**ptr;
-	size_t	i;
+	int		i;
 
 	i = 0;
 	board = (char**)malloc(sizeof(*board) * (size + 1));
@@ -32,7 +32,7 @@ char	**make_board(size_t size)
 	return (ptr);
 }
 
-size_t	get_min_board_size(t_list *pieces)
+int		get_min_board_size(t_list *pieces)
 {
 	int		i;
 	int		sqroot;
@@ -80,7 +80,7 @@ int		*get_boundry_piece(char *piece)
 }
 
 
- void	remove_piece(char ***board)
+ char	*remove_piece(char ***board)
  {
 	char	**ptr_board;
 	char	**ptr2_board;
@@ -115,23 +115,33 @@ int		*get_boundry_piece(char *piece)
 		}
 		ptr2_board++;
 	}
-	return ;
+	/*
+	if (last_piece == 'A')
+		return (".AA\nAA");
+	if (last_piece == 'B')
+		return ("BB\nBB");
+	if (last_piece == 'C')
+		return ("C\nC\nC\nC");
+	if (last_piece == 'D')
+		return ("DDDD");
+	else 
+	*/
+		return ("NOOOOOOOOO");
  }
 
-int		check_valid_space(t_list *piece, char ***board, int x, int y)
+int		check_valid_space(char *piece, char ***board, int x, int y)
 {
 	char	**board2;
+	char	*ptr;
 	int		i;
 	int		j;
-	board2 = *board;
-	char	*ptr;
 
-	if (!(piece->content))
+	if (!(piece))
 		return (0);
-	ptr = piece->content;
+	board2 = *board;
+	ptr = piece;
 	i = 0;
 	j = 0;
-	
 /*
 	ft_putnbr(x);
 	ft_putendl("x");
@@ -166,57 +176,77 @@ int		check_valid_space(t_list *piece, char ***board, int x, int y)
 	}
 	return (1);
 }
+int		piece_placeable(char *piece, char ***board, int size, t_point p)
+{
+	int		*boundry;
+	boundry = get_boundry_piece(piece);
 
-int		put_piece(t_list *piece, char	***board, int pos_x, int pos_y)
+	while (p.x + boundry[0] <= size && p.y + boundry[1] <= size)
+	{
+		if(check_valid_space(piece, board, p.x, p.y))
+			return (1);
+		p.x++;
+		if (p.x + boundry[0] > size)
+		{
+			p.y++;
+			p.x = 0;
+		}
+	}
+	return (0);
+}
+
+int		put_piece(char *piece, char ***board, int size, t_point p)
 {
 	char	**board2;
 	int		*boundry;
 	int		i;
 	int		j;
-	int		k;
 	int		t;
+	int		k;
 
 	board2 = *board;
 	if (!piece)
 		return (0);
 //	ft_putendl(piece->content);
-	boundry = get_boundry_piece(piece->content);
-	i = 0 + pos_x;
-	j = 0 + pos_y;
-	while (i + boundry[0] <= 4 && j + boundry[1] <= 4)
+	boundry = get_boundry_piece(piece);
+	i = 0 + p.x;
+	j = 0 + p.y;
+	while (i + boundry[0] <= size && j + boundry[1] <= size)
 	{
 
 		t = check_valid_space(piece, board, i, j);
+/*
 		ft_putnbr(i + boundry[0]);
 		ft_putendl("i + b");
 		ft_putnbr(j + boundry[1]);
 		ft_putendl("j + b");
+*/
 		if (t == 1)
 		{
 			k = i;
-			while (*(char*)piece->content)
+			while (*(char*)piece)
 			{
 //				ft_putstr("enter piece placement \n");
-				if (ft_isalpha(*(char*)piece->content))
+				if (ft_isalpha(*(char*)piece))
 				{
-					board2[j][k] = *(char*)piece->content;
+					board2[j][k] = *(char*)piece;
 					k++;
 //					ft_putchar(board2[k][j]);
 				}
-				else if (*((char*)piece->content) == '.')
+				else if (*((char*)piece) == '.')
 					k++;
-				else if (*((char*)piece->content) == '\n')
+				else if (*((char*)piece) == '\n')
 				{
 					j++;
 					k = i;
 				}
-				piece->content++;
+				piece++;
 			}
 			return (1);
 		}
 		i++;
 //		ft_putnbr(i);
-		if (i + boundry[0] > 4)
+		if (i + boundry[0] > size)
 		{
 //			ft_putendl("Enter");
 			j++;
