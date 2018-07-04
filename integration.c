@@ -12,36 +12,6 @@
 
 #include "fillit.h"
 
-/*
-
-t_piece tetro_new_valid(char *s, int tetro_amount)
-{
-	t_piece	*tetro;
-
-	if ((tetro = (t_piece *)malloc(sizeof(*tetro))) == NULL)
-		return (NULL);
-	if (symbol == NULL || piece == NULL)
-	{
-		tetro->symbol = NULL;
-		tetro->piece = NULL;
-	}
-	else
-	{
-		tetro->symbol = tetro_symbol();
-	}
-}
-
-*/
-
-char	tetro_symbol(int tetro_num)
-{
-	char	sym;
-
-	sym = tetro_num + 64;
-
-	return (sym);
-}
-
 int	*tetro_next_coordinate(char *s, int start, int skip)
 {
 	int	x;
