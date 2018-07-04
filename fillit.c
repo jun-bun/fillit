@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fillit.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dkotov <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: juwong <juwong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/29 19:00:21 by dkotov            #+#    #+#             */
-/*   Updated: 2018/06/29 21:36:21 by juwong           ###   ########.fr       */
+/*   Updated: 2018/07/04 14:35:23 by juwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	main(int argc, char **argv)
 	int	fd;
 	int	ret;
 	char	buf[BUF_SIZE];
+	t_piece *l_piece;
 
 	if (argc == 2)
 	{
@@ -35,6 +36,8 @@ int	main(int argc, char **argv)
 				print_t_piece(struct_new_piece(buf, 1));
 				/* ft_putstr("Connections: ");
 				ft_putnbr(valid_tetro_connections_checker(buf, 0, 20));*/
+				l_piece = struct_new_piece(buf, 1);
+				start_solve(l_piece);
 				return (0);
 			}
 			else

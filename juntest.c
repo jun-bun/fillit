@@ -46,7 +46,7 @@ int		main()
 	pieces->next->next = ft_lstnew("#\n#\n#\n#", 8);
 	pieces->next->next->next = ft_lstnew("####", 4);
 	*/ 
-	pieces = ft_lstnew(".AA\nAA",  6);
+	pieces = ft_lstnew("A\nAA\nA\n",  8);
 	pieces->next = ft_lstnew("BB\nBB", 6);
 	pieces->next->next = ft_lstnew("C\nC\nC\nC", 8);
 	pieces->next->next->next = ft_lstnew("DDDD", 4);
