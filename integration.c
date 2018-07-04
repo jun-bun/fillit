@@ -108,3 +108,35 @@ int	**tetro_clean_coordinates(int **arr)
 		}
 	return (arr);
 }
+
+char	*tetro_new_string(int **arr)
+{
+	char	*s;
+	int	i;
+	int	p;
+	int	y;
+
+	i = 0;
+	p = 0;
+	y = 0;
+	s = (char *)malloc(sizeof(char)*25);
+	while(p < 4)
+	{
+		if (y == arr[p][1])
+		{
+			if (i == arr[p][0])
+				s[i] = '#';
+			else
+				s[i] = '.';
+			i++;
+			y++;
+		}
+		else
+		{
+			s[i] = '\n';
+			i++;
+		}
+		p++;
+	}
+	return (s);
+}

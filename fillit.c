@@ -58,6 +58,9 @@ int	main(int argc, char **argv)
 				ft_putnbr(tetro_clean_coordinates(tetro_get_coordinates(buf, 0, 19))[3][1]);
 				ft_putchar(';');
 				ft_putnbr(tetro_clean_coordinates(tetro_get_coordinates(buf, 0, 19))[3][2]);
+				ft_putchar('\n');
+				ft_putchar('\n');
+				ft_putstr(tetro_new_string(tetro_clean_coordinates(tetro_get_coordinates(buf, 0, 19))));
 				/* ft_putstr("Connections: ");
 				ft_putnbr(valid_tetro_connections_checker(buf, 0, 20));*/
 				return (0);
