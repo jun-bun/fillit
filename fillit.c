@@ -32,6 +32,7 @@ int	main(int argc, char **argv)
 				ft_putstr("I found: ");
 				ft_putnbr(valid_tetro_map(buf));
 				ft_putchar('\n');
+				print_t_piece(struct_new_piece(buf, 1));
 				/* ft_putstr("Connections: ");
 				ft_putnbr(valid_tetro_connections_checker(buf, 0, 20));*/
 				return (0);
