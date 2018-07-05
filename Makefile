@@ -25,7 +25,7 @@ OBJECTS = *.o
 all: $(NAME)
 
 $(NAME):
-	gcc -Wall -Wextra -Werror -c $(LIB).h $(LIB_SRC) $(NAME).h fillit.c valid.c integration.c struct.c -g
+	gcc -Wall -Wextra -Werror -c $(LIB).h $(LIB_SRC) $(NAME).h fillit.c valid.c integration.c board.c struct.c -g
 	ar rcs $(NAME).a $(OBJECTS)
 	gcc -Wall -Wextra -Werror -o $(NAME) $(NAME).a -g
 

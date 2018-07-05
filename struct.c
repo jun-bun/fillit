@@ -21,6 +21,20 @@ char	tetro_symbol(int tetro_num)
 	return (sym);
 }
 
+char	*tetro_mod(char *s, char symbol)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == '#')
+			s[i] = symbol;
+		i++;
+	}
+	return (s);
+}
+
 t_piece *struct_new_piece(char *s, int tetro_num)
 {
 	t_piece	*piece;
@@ -35,7 +49,7 @@ t_piece *struct_new_piece(char *s, int tetro_num)
 	else
 	{
 		piece->symbol = tetro_symbol(tetro_num);
-		piece->content = tetro_new_string(tetro_clean_coordinates(tetro_get_coordinates(s, 0, 19)));
+		piece->content = tetro_mod(tetro_new_string(tetro_clean_coordinates(tetro_get_coordinates(s, 0, 19))), tetro_symbol(tetro_num));
 		piece->boundry = get_boundry_piece(piece->content);
 		(piece->p).x = 0;
 		(piece->p).y = 0;

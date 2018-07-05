@@ -37,7 +37,7 @@ int	main(int argc, char **argv)
 				/* ft_putstr("Connections: ");
 				ft_putnbr(valid_tetro_connections_checker(buf, 0, 20));*/
 				l_piece = struct_new_piece(buf, 1);
-				start_solve(l_piece);
+				//start_solve(l_piece);
 				return (0);
 			}
 			else
