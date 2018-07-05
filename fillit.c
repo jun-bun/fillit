@@ -20,7 +20,9 @@ int	main(int argc, char **argv)
 	int	fd;
 	int	ret;
 	char	buf[BUF_SIZE];
+	//int p;
 	t_piece *l_piece;
+	t_piece *f_piece;
 
 	if (argc == 2)
 	{
@@ -33,10 +35,15 @@ int	main(int argc, char **argv)
 				ft_putstr("I found: ");
 				ft_putnbr(valid_tetro_map(buf));
 				ft_putchar('\n');
-				print_t_piece(struct_new_piece(buf, 1));
+				//p = 1;
+				f_piece = struct_new_piece(buf, 1, 0, 19);
+				l_piece = struct_make_list(f_piece, buf, valid_tetro_map(buf));
+
+				print_t_piece(l_piece);
+				//);
 				/* ft_putstr("Connections: ");
 				ft_putnbr(valid_tetro_connections_checker(buf, 0, 20));*/
-				l_piece = struct_new_piece(buf, 1);
+
 				//start_solve(l_piece);
 				return (0);
 			}

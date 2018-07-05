@@ -15,6 +15,7 @@
 # define FILLIT_H
 
 # include "libft/libft.h"
+#include <stdio.h>
 
 typedef struct	s_point
 {
@@ -51,8 +52,8 @@ int	*tetro_next_coordinate(char *s, int start, int skip);
 int	**tetro_get_coordinates(char *s, int start, int end);
 int	**tetro_clean_coordinates(int **arr);
 char	*tetro_new_string(int **arr);
-t_piece *struct_new_piece(char *s, int tetro_num);
-t_piece *struct_add_piece(t_piece old_piece, char *s, int tetro_num);
+t_piece *struct_new_piece(char *s, int tetro_num,int start, int end);
+t_piece *struct_make_list(t_piece *first_piece, char *s, int tetro_num);
 void print_t_piece(t_piece *pieces);
 
 #endif

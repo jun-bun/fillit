@@ -35,7 +35,7 @@ char	*tetro_mod(char *s, char symbol)
 	return (s);
 }
 
-t_piece *struct_new_piece(char *s, int tetro_num)
+t_piece *struct_new_piece(char *s, int tetro_num, int start, int end)
 {
 	t_piece	*piece;
 
@@ -49,7 +49,7 @@ t_piece *struct_new_piece(char *s, int tetro_num)
 	else
 	{
 		piece->symbol = tetro_symbol(tetro_num);
-		piece->content = tetro_mod(tetro_new_string(tetro_clean_coordinates(tetro_get_coordinates(s, 0, 19))), tetro_symbol(tetro_num));
+		piece->content = tetro_mod(tetro_new_string(tetro_clean_coordinates(tetro_get_coordinates(s, start, end))), tetro_symbol(tetro_num));
 		piece->boundry = get_boundry_piece(piece->content);
 		(piece->p).x = 0;
 		(piece->p).y = 0;
@@ -57,28 +57,33 @@ t_piece *struct_new_piece(char *s, int tetro_num)
 	piece->next = NULL;
 	return (piece);
 }
-
-/* t_piece *struct_add_piece(t_piece old_piece, char *s, int tetro_num)
+//#include <stdio.h>
+t_piece *struct_make_list(t_piece *first_piece, char *s, int tetro_num)
 {
 	t_piece	*piece;
+	int	i;
+	int	t;
 
-	if ((piece = (t_piece *)malloc(sizeof(*piece))) == NULL)
-		return (NULL);
-	if (symbol == NULL || content == NULL)
+	i = 0;
+	t = 2;
+	piece = first_piece;
+	if (s == NULL || tetro_num == 0)
 	{
-		piece->symbol = NULL;
+		piece->symbol = 0;
 		piece->content = NULL;
 	}
 	else
 	{
-		piece->symbol = tetro_symbol(tetro_num);
-		piece->content = tetro_new_string(tetro_clean_coordinates(tetro_get_coordinates(s, 0, 19)));
+		while (t <= tetro_num)
+		{
+			piece->next = struct_new_piece(s, t, i, i + 19);
+			i = i + 21;
+			t++;
+			piece = piece->next;
+		}
 	}
-	old_piece->next = piece;
-	piece->next = NULL;
-	return (piece);
+	return (first_piece);
 }
-*/
 
 void print_t_piece(t_piece *pieces)
 {
@@ -86,7 +91,10 @@ void print_t_piece(t_piece *pieces)
 	{
 		ft_putchar(pieces->symbol);
 		ft_putchar('\n');
+		ft_putchar('\n');
 		ft_putstr(pieces->content);
+		ft_putchar('\n');
+		ft_putchar('\n');
 //		ft_putnbr(pieces->boundry);
 		pieces = pieces->next;
 	}
