@@ -6,7 +6,7 @@
 /*   By: juwong <juwong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/29 19:25:08 by juwong            #+#    #+#             */
-/*   Updated: 2018/07/03 23:17:02 by juwong           ###   ########.fr       */
+/*   Updated: 2018/07/05 13:14:21 by juwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	**make_board(int size)
 	return (ptr);
 }
 
-int		get_min_board_size(t_list *pieces)
+int		get_min_board_size(t_piece *pieces)
 {
 	int		i;
 	int		sqroot;
@@ -48,7 +48,7 @@ int		get_min_board_size(t_list *pieces)
 	while (sqroot * sqroot < i)
 		sqroot++;
 	
-	return ((size_t) sqroot);
+	return (sqroot);
 }
 
 int		*get_boundry_piece(char *piece)
@@ -79,7 +79,60 @@ int		*get_boundry_piece(char *piece)
 	return (boundry);
 }
 
+char	*remove_piece(char ***board)
+ {
+	char	**ptr_board;
+	char	last_piece;
+	int		i;
+	int		k;
 
+	ptr_board = *board;
+	last_piece = 'A';
+	k = 0;
+	while (ptr_board[k])
+	{
+		i = 0;
+		while (ptr_board[k][i])
+		{
+			if (ft_isalpha(ptr_board[k][i]))
+			{
+				if (last_piece < ptr_board[k][i])
+					last_piece = ptr_board[k][i];
+			}
+			i++;
+		}
+		k++;
+	}
+	k = 0;
+	while (ptr_board[k])
+	{
+		i = 0;
+		while (ptr_board[k][i])
+		{
+			if (ptr_board[k][i] == last_piece)
+				ptr_board[k][i] = '.';
+			i++;
+		}
+		k++;
+	}
+	ft_putstr("lastpiece:");
+	ft_putchar(last_piece);
+	ft_putchar('\n');
+	/*
+	if (last_piece == 'A')
+		return (".AA\nAA");
+	if (last_piece == 'B')
+		return ("BB\nBB");
+	if (last_piece == 'C')
+		return ("C\nC\nC\nC");
+	if (last_piece == 'D')
+		return ("DDDD");
+	else 
+	*/
+		return ("NOOOOOOOOO");
+ }
+
+/*
  char	*remove_piece(char ***board)
  {
 	char	**ptr_board;
@@ -115,7 +168,10 @@ int		*get_boundry_piece(char *piece)
 		}
 		ptr2_board++;
 	}
-	/*
+	ft_putstr("lastpiece:");
+	ft_putchar(last_piece);
+	ft_putchar('\n');
+
 	if (last_piece == 'A')
 		return (".AA\nAA");
 	if (last_piece == 'B')
@@ -125,9 +181,10 @@ int		*get_boundry_piece(char *piece)
 	if (last_piece == 'D')
 		return ("DDDD");
 	else 
-	*/
+
 		return ("NOOOOOOOOO");
  }
+ */
 
 int		check_valid_space(char *piece, char ***board, int x, int y)
 {
@@ -195,6 +252,38 @@ int		piece_placeable(char *piece, char ***board, int size, t_point p)
 	return (0);
 }
 
+int		put_piece(char *piece, char ***board, t_point p)
+{
+	char	**board2;
+	int		k;
+
+	board2 = *board;
+	if (!piece)
+		return (0);
+//	ft_putendl(piece->content);	
+	k = p.x;
+	while (*(char*)piece)
+	{
+//	ft_putstr("enter piece placement \n");
+		if (ft_isalpha(*(char*)piece))
+		{
+			board2[p.y][k] = *(char*)piece;
+			k++;
+//	ft_putchar(board2[k][j]);
+		}
+		else if (*((char*)piece) == '.')
+			k++;
+		else if (*((char*)piece) == '\n')
+		{
+			p.y++;
+			k = p.x;
+		}
+		piece++;
+	}
+	return (1);
+}
+
+/*
 int		put_piece(char *piece, char ***board, int size, t_point p)
 {
 	char	**board2;
@@ -207,7 +296,7 @@ int		put_piece(char *piece, char ***board, int size, t_point p)
 	board2 = *board;
 	if (!piece)
 		return (0);
-//	ft_putendl(piece->content);
+	ft_putendl(piece->content);
 	boundry = get_boundry_piece(piece);
 	i = 0 + p.x;
 	j = 0 + p.y;
@@ -215,23 +304,21 @@ int		put_piece(char *piece, char ***board, int size, t_point p)
 	{
 
 		t = check_valid_space(piece, board, i, j);
-/*
 		ft_putnbr(i + boundry[0]);
 		ft_putendl("i + b");
 		ft_putnbr(j + boundry[1]);
 		ft_putendl("j + b");
-*/
 		if (t == 1)
 		{
 			k = i;
 			while (*(char*)piece)
 			{
-//				ft_putstr("enter piece placement \n");
+				ft_putstr("enter piece placement \n");
 				if (ft_isalpha(*(char*)piece))
 				{
 					board2[j][k] = *(char*)piece;
 					k++;
-//					ft_putchar(board2[k][j]);
+					ft_putchar(board2[k][j]);
 				}
 				else if (*((char*)piece) == '.')
 					k++;
@@ -245,13 +332,14 @@ int		put_piece(char *piece, char ***board, int size, t_point p)
 			return (1);
 		}
 		i++;
-//		ft_putnbr(i);
+		ft_putnbr(i);
 		if (i + boundry[0] > size)
 		{
-//			ft_putendl("Enter");
+			ft_putendl("Enter");
 			j++;
 			i = 0;
 		}
 	}
 	return (0);
 }
+*/

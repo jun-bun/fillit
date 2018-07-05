@@ -6,7 +6,7 @@
 /*   By: juwong <juwong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/29 19:00:21 by dkotov            #+#    #+#             */
-/*   Updated: 2018/07/04 15:45:36 by juwong           ###   ########.fr       */
+/*   Updated: 2018/07/04 20:47:20 by juwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int argc, char **argv)
 	int	fd;
 	int	ret;
 	char	buf[BUF_SIZE];
-	t_piece *l_piece;
+	t_piece		*pieces;
 
 	if (argc == 2)
 	{
@@ -33,11 +33,25 @@ int	main(int argc, char **argv)
 				ft_putstr("I found: ");
 				ft_putnbr(valid_tetro_map(buf));
 				ft_putchar('\n');
-				print_t_piece(struct_new_piece(buf, 1));
+				//print_t_piece(struct_new_piece(buf, 1));
+				pieces = struct_new_piece(buf, 1);
+				//pieces->next = struct_new_piece("..##\n..##", 2);
+				//pieces->next->next = struct_new_piece("..#.\n..##\n..#.", 3);
+
+				while (pieces)
+				{
+					ft_putstr(pieces->content);
+					pieces = pieces->next;
+					ft_putchar('\n');
+				}
+				//start_solve(pieces);
+				//test_get_boundry();
+				
+				//test_get_boundry();
 				/* ft_putstr("Connections: ");
 				ft_putnbr(valid_tetro_connections_checker(buf, 0, 20));*/
-				l_piece = struct_new_piece(buf, 1);
-				start_solve(l_piece);
+				//l_piece = struct_new_piece(buf, 1);
+				//start_solve(l_piece);
 				return (0);
 			}
 			else

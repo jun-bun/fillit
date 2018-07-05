@@ -6,13 +6,12 @@
 /*   By: juwong <juwong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/02 14:43:53 by juwong            #+#    #+#             */
-/*   Updated: 2018/07/04 15:45:35 by juwong           ###   ########.fr       */
+/*   Updated: 2018/07/05 13:14:48 by juwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void	ft_lstadd(t_list **alst, t_list *new);
 /*
 void	solve(t_list *pieces)
 {
@@ -36,15 +35,20 @@ void	solve(t_list *pieces)
 }
 */
 
-int		solve(t_list *l_pieces, char ***board, int size, t_point p)
+int		solve(t_piece 	*l_pieces, char ***board, int size, t_point p)
 {
-	int		*boundry;
+	int			*boundry;
 	//int		res;
 	//t_list	*new_l;
-	int		res;
-	if (l_pieces == NULL)
+	//int		res;
+	t_point		np;
+	int			res;
+
+	if (!l_pieces)
 		return (1);
-	boundry = get_boundry_piece(l_pieces->content);
+	boundry = l_pieces->boundry;
+	np.x = 0;
+	np.y = 0;
 	while (p.x + boundry[0] <= size && p.y + boundry[1] <= size)
 	{
 		/*
@@ -57,29 +61,38 @@ int		solve(t_list *l_pieces, char ***board, int size, t_point p)
 			res = (solve(new_l, board, size, p));
 		}
 		*/
-		ft_print_board(*board);
-		if ((piece_placeable(l_pieces->content, board, size, p)))
+		if (check_valid_space(l_pieces->content, board, p.x, p.y))
 		{
-			put_piece(l_pieces->content, board, size, p);
-			l_pieces = l_pieces->next;
+			put_piece(l_pieces->content, board, p);
+			ft_print_board(*board);
+			ft_putendl("put piece");
+			ft_putstr(l_pieces->content);
+			ft_putchar('\n');
+			ft_putchar('\n');
+			res = solve(l_pieces->next, board, size, np);
+			if (res == 1)
+				return (1);		
+			if (res == 0)
+			{
+				remove_piece(board);
+				ft_print_board(*board);
+				ft_putendl("removed piece");
+				ft_putstr(l_pieces->content);
+				ft_putchar('\n');
+				ft_putchar('\n');
+			}
 		}
-		res = solve(l_pieces, board, size, p);
-		if (res == 1)
-			return (1);
-		else
-		{
 			p.x++;
 			if (p.x + boundry[0] > size)
 			{
 				p.y++;
 				p.x = 0;
 			}
-		}
 	}
 	return (0);
 }
 
-void	start_solve(t_list *l_pieces)
+void	start_solve(t_piece *l_pieces)
 {
 	char		**board;
 	int			size;
@@ -96,7 +109,9 @@ void	start_solve(t_list *l_pieces)
     		free(board);
 			board = make_board(size);
 		}
+	ft_putendl("Found answer!");
 	ft_print_board(board);
+}
 /*
 	while (pieces)
 	{
@@ -123,7 +138,6 @@ void	start_solve(t_list *l_pieces)
 
 	}
 */
-}
 
 /*
 void	solve(t_list *pieces)
