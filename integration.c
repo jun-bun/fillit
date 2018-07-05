@@ -111,10 +111,16 @@ char	*tetro_new_string(int **arr)
         }
         else
         {
-          s[i] = '\n';
-          i++;
-          x = 0;
-          y++;
+			while (x <= arr[3][0] || x <= arr[2][0] || x <= arr[1][0])
+          	{
+            	s[i] = '.';
+            	i++;
+            	x++;
+          	}
+          	s[i] = '\n';
+          	i++;
+          	x = 0;
+          	y++;
         }
     }
     s[i] = '\0';
