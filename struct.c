@@ -17,7 +17,6 @@ char	tetro_symbol(int tetro_num)
 	char	sym;
 
 	sym = tetro_num + 64;
-
 	return (sym);
 }
 
@@ -35,11 +34,11 @@ char	*tetro_mod(char *s, char symbol)
 	return (s);
 }
 
-t_piece *struct_new_piece(char *s, int tetro_num)
+t_piece	*struct_new_piece(char *s, int tetro_num)
 {
 	t_piece	*piece;
-	int	start;
-	int	end;
+	int		start;
+	int		end;
 
 	start = (tetro_num - 1) * 21;
 	end = start + 19;
@@ -62,11 +61,11 @@ t_piece *struct_new_piece(char *s, int tetro_num)
 	return (piece);
 }
 
-t_piece *struct_make_list(t_piece *first_piece, char *s, int tetro_num)
+t_piece	*struct_make_list(t_piece *first_piece, char *s, int tetro_num)
 {
 	t_piece	*piece;
-	int	i;
-	int	t;
+	int		i;
+	int		t;
 
 	i = (tetro_num - 1) * 21;
 	t = 2;
@@ -89,7 +88,7 @@ t_piece *struct_make_list(t_piece *first_piece, char *s, int tetro_num)
 	return (first_piece);
 }
 
-void print_t_piece(t_piece *pieces)
+void	print_t_piece(t_piece *pieces)
 {
 	while (pieces != NULL)
 	{
@@ -99,7 +98,6 @@ void print_t_piece(t_piece *pieces)
 		ft_putstr(pieces->content);
 		ft_putchar('\n');
 		ft_putchar('\n');
-//		ft_putnbr(pieces->boundry);
 		pieces = pieces->next;
 	}
 	return ;
