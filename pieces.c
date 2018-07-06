@@ -6,7 +6,7 @@
 /*   By: juwong <juwong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/29 19:51:07 by juwong            #+#    #+#             */
-/*   Updated: 2018/07/06 14:56:18 by juwong           ###   ########.fr       */
+/*   Updated: 2018/07/06 15:20:27 by juwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ void	remove_piece(char ***board, char s)
 		k++;
 	}
 }
-
 
 int		check_valid_space(char *piece, char ***board, int x, int y)
 {
