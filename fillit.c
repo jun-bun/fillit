@@ -15,43 +15,38 @@
 
 #define BUF_SIZE 560
 
+int	opener(int fd, char *buf)
+{
+	int		ret;
+	t_piece	*l_piece;
+	t_piece	*f_piece;
+
+	ret = read(fd, buf, BUF_SIZE);
+	if (valid_tetro_map(buf) > 0 && valid_tetro_map(buf) <= 26)
+	{
+		f_piece = struct_new_piece(buf, 1);
+		l_piece = struct_make_list(f_piece, buf, valid_tetro_map(buf));
+		start_solve(l_piece);
+		return (0);
+	}
+	else
+	{
+		ft_putstr("error\n");
+		return (1);
+	}
+}
+
 int	main(int argc, char **argv)
 {
-	int	fd;
-	int	ret;
+	int		fd;
 	char	buf[BUF_SIZE];
-	//int p;
-	t_piece *l_piece;
-	t_piece *f_piece;
 
 	if (argc == 2)
 	{
 		fd = open(argv[1], O_RDONLY);
 		if (fd > 0)
 		{
-			ret = read(fd, buf, BUF_SIZE);
-			if (valid_tetro_map(buf) > 0 && valid_tetro_map(buf) <= 26)
-			{
-				//ft_putstr("I found: ");
-				//ft_putnbr(valid_tetro_map(buf));
-				//ft_putchar('\n');
-				//p = 1;
-				f_piece = struct_new_piece(buf, 1);
-				l_piece = struct_make_list(f_piece, buf, valid_tetro_map(buf));
-
-				//print_t_piece(l_piece);
-				//);
-				/* ft_putstr("Connections: ");
-				ft_putnbr(valid_tetro_connections_checker(buf, 0, 20));*/
-				start_solve(l_piece);
-				return (0);
-			}
-			else
-			{
-				ft_putstr("error\n");
-				//ft_putstr(buf);
-				return (1);
-			}
+			opener(fd, buf);
 		}
 		else
 		{
