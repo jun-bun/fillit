@@ -52,7 +52,9 @@ t_piece	*struct_new_piece(char *s, int tetro_num)
 	else
 	{
 		piece->symbol = tetro_symbol(tetro_num);
-		piece->content = tetro_mod(tetro_new_string(tetro_clean_coordinates(tetro_get_coordinates(s, start, end, tetro_num))), tetro_symbol(tetro_num));
+		piece->content = tetro_mod(tetro_new_string(tetro_clean_coordinates(\
+			tetro_get_coordinates(s, start, end, tetro_num))),\
+			tetro_symbol(tetro_num));
 		piece->boundry = get_boundry_piece(piece->content);
 		(piece->p).x = 0;
 		(piece->p).y = 0;

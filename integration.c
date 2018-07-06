@@ -31,7 +31,9 @@ int		*tetro_next_coordinate(char *s, int start, int skip, int tetro_num)
 			skip--;
 		i++;
 	}
-	(((i - ((tetro_num - 1) * 21)) % 10) > 5 && ((i - ((tetro_num - 1) * 21)) % 10) < 10) ? (x = (i - ((tetro_num - 1) * 21)) % 10 - 5) : (x = (i - ((tetro_num - 1) * 21)) % 10);
+	(((i - ((tetro_num - 1) * 21)) % 10) > 5 && \
+	((i - ((tetro_num - 1) * 21)) % 10) < 10) ? (x = (i - ((tetro_num - 1) *\
+	21)) % 10 - 5) : (x = (i - ((tetro_num - 1) * 21)) % 10);
 	arr[0] = x;
 	arr[1] = y;
 	arr[2] = i;
@@ -61,7 +63,8 @@ int		**tetro_get_coordinates(char *s, int start, int end, int tetro_num)
 int		**tetro_clean_coordinates(int **arr)
 {
 	if (arr[0][0] != 0 && arr[1][0] != 0 && arr[2][0] != 0 && arr[3][0] != 0)
-		while (arr[0][0] != 0 && arr[1][0] != 0 && arr[2][0] != 0 && arr[3][0] != 0)
+		while (arr[0][0] != 0 && arr[1][0] != 0 && arr[2][0] != 0 &&\
+			arr[3][0] != 0)
 		{
 			arr[0][0] -= 1;
 			arr[1][0] -= 1;
@@ -69,7 +72,8 @@ int		**tetro_clean_coordinates(int **arr)
 			arr[3][0] -= 1;
 		}
 	if (arr[0][1] != 0 && arr[1][1] != 0 && arr[2][1] != 0 && arr[3][1] != 0)
-		while (arr[0][1] != 0 && arr[1][1] != 0 && arr[2][1] != 0 && arr[3][1] != 0)
+		while (arr[0][1] != 0 && arr[1][1] != 0 && arr[2][1] != 0 &&\
+			arr[3][1] != 0)
 		{
 			arr[0][1] -= 1;
 			arr[1][1] -= 1;
