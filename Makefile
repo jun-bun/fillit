@@ -40,8 +40,3 @@ re: fclean all
 
 main:
 	gcc -Wall -Wextra -Werror main.c
-
-juntest:
-	gcc -Wall -Wextra -Werror -g -c $(LIB).h $(LIB_SRC) $(NAME).h juntest.c valid.c board.c solve.c integration.c struct.c pieces.c -g
-	ar rcs $(NAME).a $(OBJECTS)
-	gcc -Wall -Wextra -Werror -g -o juntest $(NAME).a -g
