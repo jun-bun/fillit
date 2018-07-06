@@ -6,7 +6,7 @@
 /*   By: juwong <juwong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/29 19:51:07 by juwong            #+#    #+#             */
-/*   Updated: 2018/07/05 20:49:46 by juwong           ###   ########.fr       */
+/*   Updated: 2018/07/06 14:12:27 by juwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ int		*get_boundry_piece(char *piece)
 	return (boundry);
 }
 
-void remove_piece(char ***board, char s)
- {
+void	remove_piece(char ***board, char s)
+{
 	char	**ptr_board;
 	int		i;
 	int		k;
@@ -59,26 +59,20 @@ void remove_piece(char ***board, char s)
 		}
 		k++;
 	}
- }
+}
 
 int		check_valid_space(char *piece, char ***board, int x, int y)
 {
-	char	**board2;
 	char	*ptr;
 	int		i;
-	int		j;
 
-	if (!(piece))
-		return (0);
-	board2 = *board;
 	ptr = piece;
 	i = 0;
-	j = 0;
 	while (*ptr)
 	{
 		if (ft_isalpha(*ptr))
 		{
-			if (board2[j + y][i + x] == '.')
+			if (*board[y][i + x] == '.')
 				i++;
 			else
 				return (0);
@@ -87,7 +81,7 @@ int		check_valid_space(char *piece, char ***board, int x, int y)
 			i++;
 		else if (*ptr == '\n')
 		{
-			j++;
+			y++;
 			i = 0;
 		}
 		ptr++;

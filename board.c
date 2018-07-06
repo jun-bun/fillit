@@ -6,7 +6,7 @@
 /*   By: juwong <juwong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/29 19:25:08 by juwong            #+#    #+#             */
-/*   Updated: 2018/07/06 11:21:41 by juwong           ###   ########.fr       */
+/*   Updated: 2018/07/06 13:55:43 by juwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,3 @@ int		get_min_board_size(t_piece *pieces)
 		sqroot++;
 	return (sqroot);
 }
-

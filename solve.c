@@ -6,7 +6,7 @@
 /*   By: juwong <juwong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/02 14:43:53 by juwong            #+#    #+#             */
-/*   Updated: 2018/07/06 13:33:22 by juwong           ###   ########.fr       */
+/*   Updated: 2018/07/06 13:55:05 by juwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,15 @@
 
 int		solve(t_piece *l_pieces, char ***board, int size, t_point p)
 {
-	int			*boundry;
 	t_point		np;
 	int			res;
 
 	if (!l_pieces)
 		return (1);
-	boundry = l_pieces->boundry;
 	np.x = 0;
 	np.y = 0;
-	while (p.x + boundry[0] <= size && p.y + boundry[1] <= size)
+	while (p.x + l_pieces->boundry[0] <= size && p.y + l_pieces->boundry[1] \
+		<= size)
 	{
 		if (check_valid_space(l_pieces->content, board, p.x, p.y))
 		{
@@ -33,7 +32,7 @@ int		solve(t_piece *l_pieces, char ***board, int size, t_point p)
 				return (1);
 			remove_piece(board, l_pieces->symbol);
 		}
-		if (++(p.x) + boundry[0] > size)
+		if (++(p.x) + l_pieces->boundry[0] > size)
 		{
 			p.y++;
 			p.x = 0;
@@ -55,7 +54,7 @@ void	start_solve(t_piece *l_pieces)
 	while (!(solve(l_pieces, &board, size, p)))
 	{
 		size++;
-    	free(board);
+		free(board);
 		board = make_board(size);
 	}
 	ft_print_board(board);
