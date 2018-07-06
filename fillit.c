@@ -36,7 +36,7 @@ int	main(int argc, char **argv)
 				ft_putnbr(valid_tetro_map(buf));
 				ft_putchar('\n');
 				//p = 1;
-				f_piece = struct_new_piece(buf, 1, 0, 19);
+				f_piece = struct_new_piece(buf, 1);
 				l_piece = struct_make_list(f_piece, buf, valid_tetro_map(buf));
 
 				print_t_piece(l_piece);

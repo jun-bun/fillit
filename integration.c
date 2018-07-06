@@ -12,7 +12,7 @@
 
 #include "fillit.h"
 
-int	*tetro_next_coordinate(char *s, int start, int skip)
+int	*tetro_next_coordinate(char *s, int start, int skip, int tetro_num)
 {
 	int	x;
 	int	y;
@@ -31,14 +31,14 @@ int	*tetro_next_coordinate(char *s, int start, int skip)
 				skip--;
 			i++;
 		}
-	((i > 5 && i < 10) || (i > 15 && i < 20)) ? (x = i % 10 - 5) : (x = i % 10);
+	(((i - ((tetro_num - 1) * 21)) % 10) > 5 && ((i - ((tetro_num - 1) * 21)) % 10) < 10) ? (x = (i - ((tetro_num - 1) * 21)) % 10 - 5) : (x = (i - ((tetro_num - 1) * 21)) % 10);
 	arr[0] = x;
 	arr[1] = y;
 	arr[2] = i;
 	return (arr);
 }
 
-int	**tetro_get_coordinates(char *s, int start, int end)
+int	**tetro_get_coordinates(char *s, int start, int end, int tetro_num)
 {
 	int	i;
 	int	p;
@@ -50,9 +50,9 @@ int	**tetro_get_coordinates(char *s, int start, int end)
 	while (p < 4 && start < end)
 	{
 		arr[p] = (int *)malloc(sizeof(int) * 3);
-		arr[p][0] = tetro_next_coordinate(s, start, p)[0];
-		arr[p][1] = tetro_next_coordinate(s, start, p)[1];
-		arr[p][2] = tetro_next_coordinate(s, start, p)[2];
+		arr[p][0] = tetro_next_coordinate(s, start, p, tetro_num)[0];
+		arr[p][1] = tetro_next_coordinate(s, start, p, tetro_num)[1];
+		arr[p][2] = tetro_next_coordinate(s, start, p, tetro_num)[2];
 		p++;
 	}
 	return(arr);
