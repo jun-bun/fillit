@@ -87,10 +87,14 @@ int	valid_tetro_map(char *s)
 	{
 		if (valid_tetro_chars(s, i, i + 19) == 1 && (valid_tetro_connections_checker (s, i, i + 19) == 6 || valid_tetro_connections_checker (s, i, i + 19) == 8))
 		{
-			i = i + 21;
-			if (s[i] == '\n')
-				i++;
 			tetro++;
+			i = i + 20;
+			if (s[i] == '\0')
+				return (tetro);
+			if ((s[i] == '\n' && s[i + 1] == '\0') || s[i] == '.' || s[i] == '#')
+				return (0);
+			if (s[i] == '\n' && s[i + 1] != '\n')
+				i++;
 		}
 		else
 			return (0);
