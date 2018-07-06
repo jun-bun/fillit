@@ -12,7 +12,7 @@
 
 #include "fillit.h"
 
-int	*tetro_next_coordinate(char *s, int start, int skip, int tetro_num)
+int		*tetro_next_coordinate(char *s, int start, int skip, int tetro_num)
 {
 	int	x;
 	int	y;
@@ -24,13 +24,13 @@ int	*tetro_next_coordinate(char *s, int start, int skip, int tetro_num)
 	x = 0;
 	y = 1;
 	while (s[i] && skip >= 0)
-		{
-			if (s[i] == '\n')
-				y++;
-			if (s[i] == '#')
-				skip--;
-			i++;
-		}
+	{
+		if (s[i] == '\n')
+			y++;
+		if (s[i] == '#')
+			skip--;
+		i++;
+	}
 	(((i - ((tetro_num - 1) * 21)) % 10) > 5 && ((i - ((tetro_num - 1) * 21)) % 10) < 10) ? (x = (i - ((tetro_num - 1) * 21)) % 10 - 5) : (x = (i - ((tetro_num - 1) * 21)) % 10);
 	arr[0] = x;
 	arr[1] = y;
@@ -38,7 +38,7 @@ int	*tetro_next_coordinate(char *s, int start, int skip, int tetro_num)
 	return (arr);
 }
 
-int	**tetro_get_coordinates(char *s, int start, int end, int tetro_num)
+int		**tetro_get_coordinates(char *s, int start, int end, int tetro_num)
 {
 	int	i;
 	int	p;
@@ -55,10 +55,10 @@ int	**tetro_get_coordinates(char *s, int start, int end, int tetro_num)
 		arr[p][2] = tetro_next_coordinate(s, start, p, tetro_num)[2];
 		p++;
 	}
-	return(arr);
+	return (arr);
 }
 
-int	**tetro_clean_coordinates(int **arr)
+int		**tetro_clean_coordinates(int **arr)
 {
 	if (arr[0][0] != 0 && arr[1][0] != 0 && arr[2][0] != 0 && arr[3][0] != 0)
 		while (arr[0][0] != 0 && arr[1][0] != 0 && arr[2][0] != 0 && arr[3][0] != 0)
@@ -82,47 +82,47 @@ int	**tetro_clean_coordinates(int **arr)
 char	*tetro_new_string(int **arr)
 {
 	char	*s;
-	int	i;
-	int	p;
-	int	y;
-	int	x;
+	int		i;
+	int		p;
+	int		y;
+	int		x;
 
 	i = 0;
 	p = 0;
 	y = 0;
 	x = 0;
-	s = (char *)malloc(sizeof(char)*25);
-	while(p < 4)
-    {
-        if (y == arr[p][1])
-        {
-            if (x == arr[p][0])
-            {
-              s[i] = '#';
-              x++;
-              p++;
-            }
-            else
-            {
-              s[i] = '.';
-              x++;
-            }
-            i++;
-        }
-        else
-        {
+	s = (char *)malloc(sizeof(char) * 25);
+	while (p < 4)
+	{
+		if (y == arr[p][1])
+		{
+			if (x == arr[p][0])
+			{
+				s[i] = '#';
+				x++;
+				p++;
+			}
+			else
+			{
+				s[i] = '.';
+				x++;
+			}
+			i++;
+		}
+		else
+		{
 			while (x <= arr[3][0] || x <= arr[2][0] || x <= arr[1][0])
-          	{
-            	s[i] = '.';
-            	i++;
-            	x++;
-          	}
-          	s[i] = '\n';
-          	i++;
-          	x = 0;
-          	y++;
-        }
-    }
-    s[i] = '\0';
+			{
+				s[i] = '.';
+				i++;
+				x++;
+			}
+			s[i] = '\n';
+			i++;
+			x = 0;
+			y++;
+		}
+	}
+	s[i] = '\0';
 	return (s);
 }
