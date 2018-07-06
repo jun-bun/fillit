@@ -14,7 +14,7 @@
 
 static size_t	ft_len(int n)
 {
-	size_t	i;
+	size_t			i;
 
 	i = 1;
 	while (n /= 10)
@@ -26,7 +26,7 @@ char			*ft_itoa(int n)
 {
 	char			*str;
 	size_t			len;
-	unsigned int		nbr;
+	unsigned int	nbr;
 
 	len = ft_len(n);
 	nbr = n;

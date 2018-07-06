@@ -12,8 +12,8 @@
 
 char	*ft_strcpy(char *dest, char *src)
 {
-	int i;
-	char *copy;
+	int		i;
+	char	*copy;
 
 	i = 0;
 	copy = dest;

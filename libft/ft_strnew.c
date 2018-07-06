@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juwong <juwong@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dkotov <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 00:09:30 by dkotov            #+#    #+#             */
-/*   Updated: 2018/07/01 16:35:33 by juwong           ###   ########.fr       */
+/*   Updated: 2018/06/24 00:24:45 by dkotov           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char *ft_strnew(size_t size)
+char	*ft_strnew(size_t size)
 {
 	char	*str;
 

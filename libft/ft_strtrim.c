@@ -14,37 +14,29 @@
 
 char	*ft_strtrim(char const *s)
 {
-	char	*str;
-	char	*mem;
-	int	i;
-	int	j;
-	int	z;
+	int		start;
+	int		end;
+	int		i;
+	char	*trimmed;
 
-	if(!s)
-		return (NULL);
-	str = (char *)s;
 	i = 0;
-	j = 0;
-	z = ft_strlen(str);
-	while (ft_isspace(str[z - 1]) != 0)
-		z--;
-	while (ft_isspace(str[i]) != 0)
-		i++;
-	if (z == 0)
-	{
-		mem = (char *)malloc(sizeof(char));
-		mem[j] = '\0';
-		return (mem);
-	}
-	mem = (char *)malloc(sizeof(char) * (z - i + 1));
-	if (!mem)
+	start = 0;
+	if (!s)
 		return (NULL);
-	while (i < z && str[i])
+	end = ft_strlen(s);
+	while (s[start] == '\n' || s[start] == '\t' || s[start] == ' ')
+		start++;
+	while (s[end - 1] == '\n' || s[end - 1] == '\t' || s[end - 1] == ' ')
+		end--;
+	if (start >= end)
+		start = 0;
+	if (!(trimmed = (char*)malloc((end - start) * sizeof(char) + 1)))
+		return (NULL);
+	while (start < end)
 	{
-		mem[j] = str[i];
-		j++;
-		i++;
+		trimmed[i++] = s[start];
+		start++;
 	}
-	mem[j] = '\0';
-	return (mem);
+	trimmed[i] = '\0';
+	return (trimmed);
 }

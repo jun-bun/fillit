@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_swap.c                                          :+:      :+:    :+:   */
+/*   ft_concat_params.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dkotov <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/23 10:43:49 by dkotov            #+#    #+#             */
-/*   Updated: 2018/05/23 10:43:51 by dkotov           ###   ########.fr       */
+/*   Created: 2018/05/24 21:17:17 by dkotov            #+#    #+#             */
+/*   Updated: 2018/05/24 21:17:19 by dkotov           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_swap(int *a, int *b)
+char	*ft_concat_params(int argc, char **argv)
 {
-	int c;
+	int	i;
 
-	c = *a;
-	*a = *b;
-	*b = c;
+	i = 1;
+	while (i < argc)
+	{
+		ft_putstr(argv[i]);
+		ft_putchar('\n');
+		i++;
+	}
+	return (0);
 }

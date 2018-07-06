@@ -21,7 +21,7 @@
 int	ft_putchar(char c);
 void	ft_putnbr(int n);
 void	ft_putstr(char *str);
-int	ft_strlen(char *str);
+size_t	ft_strlen(const char *str);
 char	*ft_strdup(char *src);
 int	ft_strcmp(const char *s1, const char *s2);
 int	ft_strncmp(const char *s1, const char *s2, size_t n);
