@@ -6,7 +6,7 @@
 #    By: juwong <juwong@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/29 18:07:57 by dkotov            #+#    #+#              #
-#    Updated: 2018/07/05 19:03:17 by juwong           ###   ########.fr        #
+#    Updated: 2018/07/06 13:34:38 by juwong           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,9 +25,9 @@ OBJECTS = *.o
 all: $(NAME)
 
 $(NAME):
-	gcc -Wall -Wextra -Werror -c $(LIB).h $(LIB_SRC) $(NAME).h fillit.c valid.c integration.c struct.c board.c solve.c pieces.c -g
+	gcc -Wall -Wextra -Werror -c $(LIB).h $(LIB_SRC) $(NAME).h fillit.c valid.c integration.c struct.c board.c solve.c pieces.c
 	ar rcs $(NAME).a $(OBJECTS)
-	gcc -Wall -Wextra -Werror -o $(NAME) $(NAME).a -g
+	gcc -Wall -Wextra -Werror -o $(NAME) $(NAME).a
 
 clean:
 	rm -f *.o
