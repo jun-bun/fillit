@@ -51,13 +51,13 @@ int	valid_tetro_connections(char *s, int start, int end, int pos)
 	if (s[i] == '#' && i != end && s[i + 1] == '#')
 		c++;
 	if (s[i] == '#' && i > (start + 4) && s[i - 5] == '#')
-	 	c++;
+		c++;
 	if (s[i] == '#' && i < (end - 5) && s[i + 5] == '#')
 		c++;
 	return (c);
 }
 
-int valid_tetro_connections_checker(char *s, int start, int end)
+int	valid_tetro_connections_checker(char *s, int start, int end)
 {
 	int	i;
 	int	c;
@@ -69,7 +69,7 @@ int valid_tetro_connections_checker(char *s, int start, int end)
 		c += valid_tetro_connections(s, start, end, i);
 		i++;
 	}
-	return(c);
+	return (c);
 }
 
 /*
@@ -85,7 +85,7 @@ int	valid_tetro_map(char *s)
 	tetro = 0;
 	while (s[i])
 	{
-		if (valid_tetro_chars(s, i, i + 19) == 1 && (valid_tetro_connections_checker (s, i, i + 19) == 6 || valid_tetro_connections_checker (s, i, i + 19) == 8))
+		if (valid_tetro_chars(s, i, i + 19) == 1 && (valid_tetro_connections_checker(s, i, i + 19) == 6 || valid_tetro_connections_checker(s, i, i + 19) == 8))
 		{
 			tetro++;
 			i = i + 20;
