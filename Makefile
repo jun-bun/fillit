@@ -6,7 +6,7 @@
 #    By: juwong <juwong@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/29 18:07:57 by dkotov            #+#    #+#              #
-#    Updated: 2018/07/05 15:32:23 by juwong           ###   ########.fr        #
+#    Updated: 2018/07/05 19:03:17 by juwong           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,6 @@ main:
 	gcc -Wall -Wextra -Werror main.c
 
 juntest:
-	gcc -Wall -Wextra -Werror -c $(LIB).h $(LIB_SRC) $(NAME).h juntest.c valid.c board.c solve.c integration.c struct.c pieces.c -g
+	gcc -Wall -Wextra -Werror -g -c $(LIB).h $(LIB_SRC) $(NAME).h juntest.c valid.c board.c solve.c integration.c struct.c pieces.c -g
 	ar rcs $(NAME).a $(OBJECTS)
-	gcc -Wall -Wextra -Werror -o juntest $(NAME).a -g
+	gcc -Wall -Wextra -Werror -g -o juntest $(NAME).a -g

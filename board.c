@@ -6,7 +6,7 @@
 /*   By: juwong <juwong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/29 19:25:08 by juwong            #+#    #+#             */
-/*   Updated: 2018/07/05 15:27:48 by juwong           ###   ########.fr       */
+/*   Updated: 2018/07/05 19:37:43 by juwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 void	ft_print_board(char **board)
 {
 	if(!board)
-		ft_putstr("Fuck this shit");
+		return ;
 	while (*board)
-	{	ft_putstr(*board++);
+	{	
+		ft_putstr(*board++);
 		ft_putchar('\n');
 	}
 }
