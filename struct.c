@@ -56,8 +56,6 @@ t_piece	*struct_new_piece(char *s, int tetro_num)
 			tetro_get_coordinates(s, start, end, tetro_num))),\
 			tetro_symbol(tetro_num));
 		piece->boundry = get_boundry_piece(piece->content);
-		(piece->p).x = 0;
-		(piece->p).y = 0;
 	}
 	piece->next = NULL;
 	return (piece);
