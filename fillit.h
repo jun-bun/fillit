@@ -6,7 +6,7 @@
 /*   By: juwong <juwong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/29 18:16:49 by dkotov            #+#    #+#             */
-/*   Updated: 2018/07/05 15:27:49 by juwong           ###   ########.fr       */
+/*   Updated: 2018/07/05 20:49:49 by juwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int		*get_boundry_piece(char *piece);
 int		check_valid_space(char *piece, char ***board, int x, int y);
 int		piece_placeable(char *piece, char ***board, int size, t_point p);
 int		put_piece(char *piece, char ***board, t_point p);
-void	remove_piece(char ***board);
+void	remove_piece(char ***board, char s);
 int	valid_tetro_chars(char *s, int start, int end);
 int	valid_tetro_map(char *s);
 int	valid_tetro_connections(char *s, int start, int end, int pos);

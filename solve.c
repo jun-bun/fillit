@@ -6,7 +6,7 @@
 /*   By: juwong <juwong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/02 14:43:53 by juwong            #+#    #+#             */
-/*   Updated: 2018/07/05 19:42:56 by juwong           ###   ########.fr       */
+/*   Updated: 2018/07/05 20:50:11 by juwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int		solve(t_piece 	*l_pieces, char ***board, int size, t_point p)
 				return (1);
 			if (res == 0)
 			{
-				remove_piece(board);
+				remove_piece(board, l_pieces->symbol);
 			}
 		}
 			p.x++;

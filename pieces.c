@@ -6,7 +6,7 @@
 /*   By: juwong <juwong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/29 19:51:07 by juwong            #+#    #+#             */
-/*   Updated: 2018/07/05 13:26:11 by juwong           ###   ########.fr       */
+/*   Updated: 2018/07/05 20:49:46 by juwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,37 +40,20 @@ int		*get_boundry_piece(char *piece)
 	return (boundry);
 }
 
-void remove_piece(char ***board)
+void remove_piece(char ***board, char s)
  {
 	char	**ptr_board;
-	char	last_piece;
 	int		i;
 	int		k;
 
 	ptr_board = *board;
-	last_piece = 'A';
 	k = 0;
 	while (ptr_board[k])
 	{
 		i = 0;
 		while (ptr_board[k][i])
 		{
-			if (ft_isalpha(ptr_board[k][i]))
-			{
-				if (last_piece < ptr_board[k][i])
-					last_piece = ptr_board[k][i];
-			}
-			i++;
-		}
-		k++;
-	}
-	k = 0;
-	while (ptr_board[k])
-	{
-		i = 0;
-		while (ptr_board[k][i])
-		{
-			if (ptr_board[k][i] == last_piece)
+			if (ptr_board[k][i] == s)
 				ptr_board[k][i] = '.';
 			i++;
 		}
