@@ -6,7 +6,7 @@
 /*   By: juwong <juwong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/02 14:43:53 by juwong            #+#    #+#             */
-/*   Updated: 2018/07/05 15:29:48 by juwong           ###   ########.fr       */
+/*   Updated: 2018/07/05 18:39:44 by juwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,13 @@ int		solve(t_piece 	*l_pieces, char ***board, int size, t_point p)
 		if (check_valid_space(l_pieces->content, board, p.x, p.y))
 		{
 			put_piece(l_pieces->content, board, p);
-			ft_print_board(*board);
-			ft_putendl("put piece");
-			ft_putstr(l_pieces->content);
-			ft_putchar('\n');
-			ft_putchar('\n');
 			res = solve(l_pieces->next, board, size, np);
 			if (res == 1)
 				return (1);		
 			if (res == 0)
 			{
 				remove_piece(board);
-				ft_print_board(*board);
-				ft_putendl("removed piece");
 				ft_putstr(l_pieces->content);
-				ft_putchar('\n');
-				ft_putchar('\n');
 			}
 		}
 			p.x++;
@@ -73,6 +64,5 @@ void	start_solve(t_piece *l_pieces)
     		free(board);
 			board = make_board(size);
 		}
-	ft_putendl("Found answer!");
 	ft_print_board(board);
 }

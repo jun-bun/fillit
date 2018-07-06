@@ -1,16 +1,6 @@
 // Do not add this to final git
 #include "fillit.h"
 
-void	ft_print_board(char **board)
-{
-	if(!board)
-		ft_putstr("Fuck this shit");
-	while (*board)
-	{	ft_putstr(*board++);
-		ft_putchar('\n');
-	}
-}
-
 void	test_get_boundry(t_piece	*pieces)
 {
 	//int		*boundry;
