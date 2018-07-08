@@ -6,7 +6,7 @@
 /*   By: juwong <juwong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/30 12:38:48 by dkotov            #+#    #+#             */
-/*   Updated: 2018/07/08 14:11:09 by juwong           ###   ########.fr       */
+/*   Updated: 2018/07/08 15:13:00 by juwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,23 +69,23 @@ int	valid_tetro_connections_checker(char *s, int start, int end)
 		c += valid_tetro_connections(s, start, end, i);
 		i++;
 	}
-	return (c);
+	if (c == 6 || c == 8)
+		return (1);
+	else
+		return (0);
 }
 
 int	valid_tetro_map(char *s)
 {
 	int	i;
 	int	tetro;
-	int	connections;
 
 	i = 0;
 	tetro = 0;
-
 	while (s[i])
 	{
-		connections = valid_tetro_connections_checker(s, i, i + 19);
-		if (valid_tetro_chars(s, i, i + 19) == 1 && (connections == 6 || \
-		connections == 8))
+		if (valid_tetro_chars(s, i, i + 19) == 1 \
+			&& valid_tetro_connections_checker(s, i, i + 19))
 		{
 			tetro++;
 			i = i + 20;

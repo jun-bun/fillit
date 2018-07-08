@@ -6,7 +6,7 @@
 /*   By: juwong <juwong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/29 19:00:21 by dkotov            #+#    #+#             */
-/*   Updated: 2018/07/08 14:32:38 by juwong           ###   ########.fr       */
+/*   Updated: 2018/07/08 15:13:46 by juwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	opener(int fd, char *buf)
 
 	read(fd, buf, BUF_SIZE);
 	max_tetro = valid_tetro_map(buf);
-	if ( max_tetro > 0 && max_tetro <= 26)
+	if (max_tetro > 0 && max_tetro <= 26)
 	{
 		f_piece = struct_new_piece(buf, 1);
 		l_piece = struct_make_list(f_piece, buf, valid_tetro_map(buf));
