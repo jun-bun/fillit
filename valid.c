@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   valid.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dkotov <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: juwong <juwong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/30 12:38:48 by dkotov            #+#    #+#             */
-/*   Updated: 2018/06/30 12:38:56 by dkotov           ###   ########.fr       */
+/*   Updated: 2018/07/08 14:11:09 by juwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,22 +72,20 @@ int	valid_tetro_connections_checker(char *s, int start, int end)
 	return (c);
 }
 
-/*
-** valid_tetro_map doesn't account for ending with an empty line
-*/
-
 int	valid_tetro_map(char *s)
 {
 	int	i;
 	int	tetro;
+	int	connections;
 
 	i = 0;
 	tetro = 0;
+
 	while (s[i])
 	{
-		if (valid_tetro_chars(s, i, i + 19) == 1 && \
-		(valid_tetro_connections_checker(s, i, i + 19) == 6 || \
-		valid_tetro_connections_checker(s, i, i + 19) == 8))
+		connections = valid_tetro_connections_checker(s, i, i + 19);
+		if (valid_tetro_chars(s, i, i + 19) == 1 && (connections == 6 || \
+		connections == 8))
 		{
 			tetro++;
 			i = i + 20;

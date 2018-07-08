@@ -6,7 +6,7 @@
 /*   By: juwong <juwong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/29 19:00:21 by dkotov            #+#    #+#             */
-/*   Updated: 2018/07/05 19:34:57 by juwong           ###   ########.fr       */
+/*   Updated: 2018/07/08 14:32:38 by juwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,23 @@
 
 int	opener(int fd, char *buf)
 {
-	int		ret;
 	t_piece	*l_piece;
 	t_piece	*f_piece;
+	int		max_tetro;
 
-	ret = read(fd, buf, BUF_SIZE);
-	if (valid_tetro_map(buf) > 0 && valid_tetro_map(buf) <= 26)
+	read(fd, buf, BUF_SIZE);
+	max_tetro = valid_tetro_map(buf);
+	if ( max_tetro > 0 && max_tetro <= 26)
 	{
 		f_piece = struct_new_piece(buf, 1);
 		l_piece = struct_make_list(f_piece, buf, valid_tetro_map(buf));
 		start_solve(l_piece);
-		return (0);
+		return (1);
 	}
 	else
 	{
 		ft_putstr("error\n");
-		return (1);
+		return (0);
 	}
 }
 
@@ -51,7 +52,7 @@ int	main(int argc, char **argv)
 		else
 		{
 			ft_putstr("cannot read the file");
-			return (2);
+			return (0);
 		}
 		close(fd);
 	}
@@ -59,5 +60,4 @@ int	main(int argc, char **argv)
 	{
 		ft_putstr("usage: ./fillit file_with_tetrominoes");
 	}
-	return (0);
 }

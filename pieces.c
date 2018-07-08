@@ -6,7 +6,7 @@
 /*   By: juwong <juwong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/29 19:51:07 by juwong            #+#    #+#             */
-/*   Updated: 2018/07/06 15:20:27 by juwong           ###   ########.fr       */
+/*   Updated: 2018/07/08 14:33:45 by juwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,16 +98,16 @@ int		put_piece(char *piece, char ***board, t_point p)
 	if (!piece)
 		return (0);
 	k = p.x;
-	while (*(char*)piece)
+	while (*piece)
 	{
-		if (ft_isalpha(*(char*)piece))
+		if (ft_isalpha(*piece))
 		{
-			board2[p.y][k] = *(char*)piece;
+			board2[p.y][k] = *piece;
 			k++;
 		}
-		else if (*((char*)piece) == '.')
+		else if (*piece == '.')
 			k++;
-		else if (*((char*)piece) == '\n')
+		else if (*piece == '\n')
 		{
 			p.y++;
 			k = p.x;
